@@ -590,21 +590,31 @@ class CommandLoader {
     static toggleItem(item) {
       const isOpening = !item.classList.contains(CONFIG.classes.active);
       const button = item.querySelector('[data-faq-toggle]');
-      const content = item.querySelector('[data-faq-content]');
-      
+    
+      const chevron = item.querySelector('.faq-chevron');
+    
       // Close all items first
       DOMUtils.queryAll(CONFIG.selectors.faqItems).forEach(i => {
         i.classList.remove(CONFIG.classes.active);
         i.querySelector('[data-faq-toggle]')?.setAttribute('aria-expanded', 'false');
+        
+        const otherChevron = i.querySelector('.faq-chevron');
+        if (otherChevron) {
+          otherChevron.classList.remove('rotate-180');
+        }
       });
-      
+    
       // Open current item if it was closed
       if (isOpening) {
         item.classList.add(CONFIG.classes.active);
         button?.setAttribute('aria-expanded', 'true');
+        if (chevron) {
+          chevron.classList.add('rotate-180');
+        }
         this.scrollToItem(item);
       }
     }
+    
   
     static scrollToItem(item) {
       const itemTop = item.getBoundingClientRect().top;
