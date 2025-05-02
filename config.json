@@ -1,0 +1,143 @@
+{
+    "discord": [
+        {
+            "name": "*onlineplayers",
+            "description": "Generates an image showing all currently online players on Constantiam",
+            "args": []
+        },
+        {
+            "name": "*whisper",
+            "description": "Sends a private message to a player in Minecraft",
+            "args": [
+                { "type": "required", "name": "ign" },
+                { "type": "required", "name": "message" }
+            ]
+        },
+        {
+            "name": "*loginwatch",
+            "description": "Adds or removes a player from the login watch list. You will be notified when they log in",
+            "args": [
+                { "type": "required", "name": "add/remove" },
+                { "type": "required", "name": "ign" }
+            ]
+        },
+        {
+            "name": "*counter",
+            "description": "Displays the count for a specific type, the total count for a player, or lists counts for all types.",
+            "args": [
+                { "type": "required", "name": "query" },
+                { "type": "optional", "name": "username" }
+            ]
+        },
+        {
+            "name": "*joindate",
+            "description": "Runs the joindate command and shows the result.",
+            "args": [
+                { "type": "required", "name": "player" }
+            ]
+        },
+        {
+            "name": "*leaderboard",
+            "description": "Shows a leaderboard for the specified counter.",
+            "args": [
+                { "type": "required", "name": "query" }
+            ]
+        },
+        {
+            "name": "*moomoo",
+            "description": "Sends the command to moomoo and returns the response.",
+            "args": [
+                { "type": "required", "name": "command" }
+            ]
+        },
+        {
+            "name": "*ping",
+            "description": "Test command.",
+            "args": []
+        },
+        {
+            "name": "*tps",
+            "description": "Shows the current TPS.",
+            "args": []
+        },
+        {
+            "name": "*donations",
+            "description": "Pulls the donation info from tab and returns it.",
+            "args": []
+        },
+        {
+            "name": "*permission",
+            "description": "Manages permissions for users.",
+            "args": [
+                { "type": "required", "name": "action" },
+                { "type": "required", "name": "user" },
+                { "type": "optional", "name": "command" }
+            ]
+        },
+        {
+            "name": "*speechbubble",
+            "description": "Add a speech bubble to an image.",
+            "args": [
+                { "type": "required", "name": "bubbleType" },
+                { "type": "optional", "name": "--transparent (-t)" },
+                { "type": "optional", "name": "--adapt (better for small or wide images)" }
+            ],
+            "bubbleTypes": [
+                "big_tail_center",
+                "big_tail_left",
+                "big_tail_right",
+                "tail_center",
+                "tail_left",
+                "tail_right"
+            ]
+        },
+        {
+            "name": "*gif",
+            "description": "Converts provided images to GIF.",
+            "args": []
+        },
+        {
+            "name": "*sessions",
+            "description": "Displays all sessions for a player.",
+            "args": [
+                { "type": "required", "name": "player" }
+            ]
+        },
+        {
+            "name": "*playerinfo",
+            "description": "Displays information about a player.",
+            "args": [
+                { "type": "required", "name": "player" }
+            ]
+        },
+        {
+            "name": "*chats",
+            "description": "Displays the chat history of a player.",
+            "args": [
+                { "type": "required", "name": "player" }
+            ]
+        }
+    ],
+    "minecraft": [
+        {
+            "name": "+discord",
+            "description": "Syndicate Discord invite.",
+            "args": []
+        },
+        {
+            "name": "+help",
+            "description": "Sends you to the website with all command info + more.",
+            "args": []
+        },
+        {
+            "name": "+meowcount",
+            "description": "Meow statistics.",
+            "args": [{ "type": "optional", "name": "player" }]
+        },
+        {
+            "name": "+meowlb",
+            "description": "Leaderboard display.",
+            "args": []
+        }
+    ]
+}

@@ -1,0 +1,543 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+        --duration-default: 0.4s;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+
+    a {
+        transition: color 0.3s var(--animation-timing),
+                    opacity 0.3s var(--animation-timing);
+    }
+    
+    a:hover {
+        opacity: 0.9;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+    
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    
+    @keyframes sparkle {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: scale(2);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes pulse {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+    
+    @keyframes pulse-glow {
+        0% {
+            box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+        }
+    }
+
+    @keyframes loadingText {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+    }
+
+    @keyframes float-icon {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+    }
+
+    @keyframes pulse-slow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+    }
+
+    /* Body Background Effects */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(45deg, rgba(88, 28, 135, 0.15), rgba(15, 23, 42, 0.15), rgba(88, 28, 135, 0.15));
+        background-size: 400% 400%;
+        animation: gradientShift 30s ease infinite;
+    }
+
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 0);
+        background-size: 40px 40px;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    /* Logo Styles */
+    #yescom-logo {
+        stroke: #ffffff;
+        transition: transform 0.4s var(--animation-timing);
+    }
+    
+    #yescom-logo #path374 {
+        stroke: #00aaaa !important;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: #8b5cf6;
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 9999;
+        width: 100%;
+        backface-visibility: hidden;
+        will-change: transform;
+    }
+
+    /* Scroll Animation */
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all var(--duration-default) var(--animation-timing);
+    }
+    
+    .visible { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Utility Classes */
+    .hover\:float:hover {
+        animation: float 2s ease-in-out infinite;
+    }
+    
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradientShift 5s ease infinite;
+    }
+    
+    .glow {
+        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+    }
+
+    /* Command Item Styles */
+    .command-item {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+        border: 1px solid transparent;
+        background-clip: padding-box;
+    }
+    
+    .command-item::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        z-index: -1;
+        background: linear-gradient(45deg, #8b5cf6, #6366f1, #4f46e5);
+        background-size: 200% 200%;
+        border-radius: 0.75rem;
+        opacity: 0;
+        transition: opacity 0.4s var(--animation-timing);
+        animation: gradientShift 4s linear infinite paused;
+    }
+
+    .command-item::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), 
+                    rgba(139, 92, 246, 0.15), transparent);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .command-item[data-command-item]::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        z-index: -1;
+        background: linear-gradient(45deg, #8b5cf6, #6366f1, #4f46e5);
+        background-size: 200% 200%;
+        border-radius: 0.75rem;
+        opacity: 0;
+        transition: opacity 0.4s var(--animation-timing);
+        animation: gradientShift 4s linear infinite paused;
+    }
+    
+    .command-item:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.2),
+                    0 4px 6px -4px rgba(139, 92, 246, 0.1);
+        border-color: rgba(139, 92, 246, 0.3);
+    }
+    
+    .command-item:hover::before,
+    .command-item[data-command-item]:hover::before {
+        opacity: 0.7;
+        animation-play-state: running;
+    }
+
+    .command-item:hover::after {
+        opacity: 1;
+    }
+
+    /* Discord Link */
+    .discord-link {
+        transition: all 0.3s var(--animation-timing);
+    }
+    
+    .discord-link:hover {
+        color: #8b5cf6 !important;
+        transform: translateY(-2px);
+    }
+
+    /* FAQ Styles */
+    .faq-item {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s var(--animation-timing);
+        cursor: pointer;
+        background-clip: padding-box;
+    }
+    
+    .faq-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background: #8b5cf6;
+        transform: scaleY(0);
+        transition: transform 0.3s var(--animation-timing);
+    }
+    
+    .faq-item:hover {
+        transform: translateX(8px);
+        background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), transparent);
+    }
+    
+    .faq-item:hover::before {
+        transform: scaleY(1);
+    }
+    
+    .faq-answer {
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.4s var(--animation-timing), opacity 0.3s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    /* Loading Spinner */
+    .loading-spinner {
+        position: relative;
+    }
+    
+    .loading-spinner::after {
+        content: 'Loading';
+        position: absolute;
+        bottom: -2em;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #8b5cf6;
+        font-size: 0.9em;
+        animation: loadingText 2s infinite;
+    }
+
+    /* Mercicrux Styles */
+    .credit-mercicrux-bg {
+        background-color: rgba(255, 200, 255, 0.1);
+    }
+    
+    .credit-mercicrux-bg:hover {
+        background-color: rgba(255, 200, 255, 0.15);
+    }
+    
+    .text-mercicrux {
+        color: #FFC8FF;
+    }
+    
+    .text-mercicrux:hover {
+        color: #ffd6ff;
+    }
+
+    /* Argument Styles */
+    [data-argument] {
+        @apply px-3 py-1 rounded-full text-xs flex items-center gap-2 transition-all;
+        border: 1px solid transparent;
+    }
+    
+    /* Required Arguments */
+    [data-argument][data-required="true"] {
+        background: rgb(147 51 234 / 1) !important;
+        color: white !important;
+        border-color: rgb(126 34 206 / 0.4) !important;
+        box-shadow: 0 2px 6px -1px rgb(126 34 206 / 0.4);
+    }
+    
+    /* Optional Arguments */
+    [data-argument][data-required="false"] {
+        background: rgb(75 85 99 / 1) !important;
+        color: rgb(209 213 219 / 1) !important;
+        border-color: rgb(107 114 128 / 0.4) !important;
+        box-shadow: 0 2px 6px -1px rgb(75 85 99 / 0.3);
+    }
+    
+    /* Hover States */
+    [data-argument][data-required="true"]:hover {
+        background: rgb(126 34 206 / 1) !important;
+        transform: translateY(-1px);
+    }
+    
+    [data-argument][data-required="false"]:hover {
+        background: rgb(55 65 81 / 1) !important;
+        transform: translateY(-1px);
+    }
+
+    /* Credit Section Styles */
+    .credit-item {
+        transform: translateY(20px);
+        position: relative;
+        z-index: 2;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+
+    .credit-item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.2);
+    }
+
+    .credit-icon {
+        animation: float-icon 3s ease-in-out infinite;
+    }
+
+    .animate-pulse-slow {
+        animation: pulse-slow 3s ease-in-out infinite;
+    }
+
+    .credit-sparkles::before,
+    .credit-sparkles::after {
+        content: '';
+        position: absolute;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: sparkle 1.5s linear infinite;
+    }
+
+    .credit-sparkles::before {
+        top: 20%;
+        left: 15%;
+        width: 8px;
+        height: 8px;
+        animation-delay: 0.2s;
+    }
+
+    .credit-sparkles::after {
+        top: 60%;
+        right: 20%;
+        width: 6px;
+        height: 6px;
+        animation-delay: 0.8s;
+    }
+
+    .credit-gradient {
+        background: linear-gradient(45deg, 
+            rgba(139, 92, 246, 0.1) 0%,
+            rgba(99, 102, 241, 0.05) 50%,
+            rgba(79, 70, 229, 0.1) 100%
+        );
+        animation: gradientShift 15s ease infinite;
+    }
+
+    .credits-section .heading-underline {
+        position: relative;
+        z-index: 2; /* Keep text above gradients */
+    }
+    
+
+    /* Underline Animation */
+    .hover-underline::before {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
+    }
+
+    .hover-underline:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        #yescom-logo:hover {
+            transform: rotate(-5deg) scale(1.1);
+        }
+
+        .credit-item {
+            position: relative;
+            opacity: 1;
+            transform: none;
+        }
+
+        .credit-icon {
+            animation: none;
+        }
+    }
+
+    /* Main Content */
+    main {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+/* Radar scan animation */
+@keyframes radar-scan {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+.logo-radar-container {
+    position: relative;
+    display: inline-block;
+}
+
+.logo-radar-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%);
+    animation: radar-scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#yescom-logo {
+    position: relative;
+    z-index: 1;
+    transform: translateZ(0); /* Force hardware acceleration */
+}

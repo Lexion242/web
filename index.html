@@ -1,75 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YesCom</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YesCom - Automation and Utilities for Constantiam Minecraft server. Features Discord commands, Minecraft utilities, and community tools.">
+    <title>YesCom</title>
+    <link rel="icon" type="image/svg+xml" href="yescom.svg">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+    <style>
+        body.loaded #loading {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+        }
+    </style>
 </head>
-
-<body>
-  <div class="container">
-    <h1>YesCom</h1>
-
-    <!-- Info Section -->
-    <div class="info-section">
-      <p>This page contains all the information related to YesCom. Note that it may not always be up-to-date, join the
-        Discord if you want the most recent changes, etc.</p>
-      <p>beeeg update soon:tm: join the discord for more info once its released</p>
+<body class="bg-black text-gray-100 font-sans">
+    <div class="progress-bar"></div>
+    <div id="particles-js" class="fixed inset-0 -z-10"></div>
+    <!-- Loading Indicator -->
+    <div id="loading" class="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity duration-500">
+        <div class="loading-spinner"></div>
     </div>
+    
+    <main class="max-w-4xl mx-auto px-4 py-8 space-y-6 relative z-10">
+        <!-- Header -->
+        <header class="text-center space-y-4 scroll-animate hover:float" data-scroll-animate>
+            <div class="glow flex items-center justify-center gap-4">
+                <img src="yescom.svg" alt="YesCom Logo" class="w-16 h-16" id="yescom-logo">
+                <h1 class="text-4xl md:text-6xl font-bold bg-clip-text text-transparent 
+                       bg-gradient-to-r from-purple-400 to-blue-400 animate-gradient">
+                    YesCom
+                </h1>
+            </div>
+            <p class="text-xl text-gray-400 transform transition-all hover:scale-105">Automation and Utilities for Constantiam</p>
+        </header>
 
-    <!-- Discord Commands Section -->
-    <div class="discord-section">
-      <h2>Discord Commands</h2>
-      <ul>
-        <li>*meowcount <span class="optional">[player]</span> - Shows the global meow count, or if a player is
-          specified, shows their meow count</li>
-        <li>*meowlb - Displays the top 10 players with the most meows on the server</li>
-        <li>*onlineplayers - Generates an image showing all currently online players on Constantiam</li>
+        <!-- Info Section -->
+        <div class="bg-gray-800 rounded-2xl p-8 space-y-6 scroll-animate 
+                transform transition-all hover:scale-[1.005]" data-scroll-animate>
+            <p class="text-gray-200">This page contains all the information related to YesCom. Note that it may not always be up-to-date – join the Discord if you want the most recent changes.</p>
+            <div class="bg-gray-700 border-l-4 border-purple-500 p-4 rounded-lg">
+                <p class="text-gray-200 font-medium">🐝 beeeg update soon™ join the discord for more info once it's released</p>
+            </div>
+        </div>
 
-        <br>
-        <li class="access-required">
-          <strong>Access Required - </strong>DM me on Discord or ping me in the <a
-            href="https://discord.gg/BM9HQYhR2C" target="_blank">Syndicate Discord</a>, and I might give you access.
-        </li>
+        <!-- Discord Commands -->
+        <section id="discord-commands" class="bg-gray-800 rounded-2xl p-8 space-y-6 scroll-animate" data-scroll-animate>
+            <h2 class="text-2xl font-semibold text-white heading-underline">Discord Commands</h2>
+            <ul class="space-y-4" data-stagger data-command-list>
+                <!-- Commands will be injected here by JavaScript -->
+            </ul>
+        </section>
 
-        <li>*whisper <span class="required">&lt;ign&gt;</span> <span class="required">&lt;message&gt;</span> - Sends a
-          private message to a player in Minecraft</li>
-        <li>*loginwatch <span class="required">&lt;add/remove&gt;</span> <span class="required">&lt;ign&gt;</span> -
-          Adds or removes a player from the login watch list. You will be notified when they log in</li>
-      </ul>
+        <!-- Access Required Notice -->
+        <div class="scroll-animate border-t border-gray-700 pt-4 mt-4" data-scroll-animate>
+            <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 glow hover:border-purple-500 transition-colors">
+                <div class="flex items-center gap-2 text-purple-400">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    <strong class="text-gray-200 font-medium">Access Required:</strong>
+                </div>
+                <p class="mt-2 text-gray-300">DM me on Discord or ping me in the <a href="https://discord.gg/BM9HQYhR2C" target="_blank" class="text-blue-400 hover:text-blue-300 underline discord-link">
+                    Syndicate Discord
+                </a></p>
+            </div>
+        </div>
+
+        <!-- Minecraft Commands -->
+        <section id="minecraft-commands" class="bg-gray-800 rounded-2xl p-8 space-y-6 scroll-animate" data-scroll-animate>
+            <h2 class="text-2xl font-semibold text-white">Minecraft Commands</h2>
+            <ul class="space-y-4" data-stagger data-command-list>
+                <!-- Commands will be injected here by JavaScript -->
+            </ul>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="bg-gray-800 rounded-2xl p-8 space-y-6 scroll-animate" data-scroll-animate>
+            <h2 class="text-2xl font-semibold text-white heading-underline">Frequently Asked Questions</h2>
+            <ul class="space-y-4" data-stagger>
+                <li class="faq-item text-gray-300 p-4 rounded-lg bg-gray-750" data-faq-item>
+                    <div class="faq-question flex justify-between items-center cursor-pointer" data-faq-toggle>
+                        <strong>Counters:</strong>
+                        <svg class="faq-chevron w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer mt-2 pl-4 border-l-2 border-purple-500/50" data-faq-content>
+                        <ul class="list-disc list-inside">
+                            <li class="text-gray-400">meow counter: 26/10/2024</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="faq-item text-gray-300 p-4 rounded-lg bg-gray-750" data-faq-item>
+                    <div class="faq-question flex justify-between items-center cursor-pointer" data-faq-toggle>
+                        <strong>Is YesCom open-source?</strong>
+                        <svg class="faq-chevron w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>  
+                    <div class="faq-answer mt-2 pl-4 border-l-2 border-purple-500/50" data-faq-content>
+                        <span class="text-gray-400">No</span>
+                    </div>
+                </li>
+                <li class="faq-item text-gray-300 p-4 rounded-lg bg-gray-750" data-faq-item>
+                    <div class="faq-question flex justify-between items-center cursor-pointer" data-faq-toggle>
+                        <strong>What's the Discord Link?</strong>
+                        <svg class="faq-chevron w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer mt-2 pl-4 border-l-2 border-purple-500/50" data-faq-content>
+                        <a href="https://discord.gg/BM9HQYhR2C" target="_blank" class="text-blue-400 hover:text-blue-300 underline discord-link">
+                            Join the Syndicate Discord
+                        </a>
+                    </div>
+                </li>
+                <li class="faq-item text-gray-300 p-4 rounded-lg bg-gray-750" data-faq-item>
+                    <div class="faq-question flex justify-between items-center cursor-pointer" data-faq-toggle>
+                        <strong>What's in the Discord?</strong>
+                        <svg class="faq-chevron w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer mt-2 pl-4 border-l-2 border-purple-500/50" data-faq-content>
+                        <span class="text-gray-400">Chat bridge, TPS graphs, and more</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+<!-- Credits Section -->
+<section class="credits-section bg-gray-800 rounded-2xl p-8 space-y-6 scroll-animate relative overflow-hidden" data-scroll-animate>    <div class="absolute inset-0 credit-gradient opacity-20 pointer-events-none"></div>
+    <h2 class="text-2xl font-semibold text-white heading-underline">Credits</h2>
+    <div class="space-y-4" data-stagger>
+        <!-- Luna Credit -->
+        <div class="credit-item group flex items-center gap-4 p-4 rounded-lg bg-gray-750 hover:bg-gray-700 transition-all 
+                    relative hover:z-10 hover:shadow-2xl hover:shadow-purple-500/20"
+             data-credit-item>
+            <div class="p-3 rounded-full bg-purple-500/20 group-hover:bg-purple-500/30 transition-colors
+                        transform group-hover:rotate-[360deg] duration-500">
+                <svg class="w-6 h-6 text-purple-400 credit-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <a href="https://dev-loa.de" target="_blank" 
+                   class="text-lg font-medium text-purple-400 hover:text-purple-300 underline discord-link
+                          relative inline-block hover:before:scale-x-100 hover:before:opacity-100
+                          before:absolute before:bottom-0 before:left-0 before:w-full before:h-[2px]
+                          before:bg-gradient-to-r before:from-purple-400 before:to-blue-400
+                          before:origin-bottom-left before:scale-x-0 before:opacity-40
+                          before:transition before:duration-300 before:ease-out">
+                    Luna
+                </a>
+                <p class="text-gray-300 mt-1">Created and coded the entire website</p>
+            </div>
+        </div>
+        
+        <!-- Mercicrux Credit -->
+        <div class="credit-item group flex items-center gap-4 p-4 rounded-lg bg-gray-750 hover:bg-gray-700 transition-all 
+                    relative hover:z-10 hover:shadow-2xl hover:shadow-pink-500/20"
+             data-credit-item>
+            <div class="p-3 rounded-full credit-mercicrux-bg transition-colors
+                        transform group-hover:scale-110 duration-300">
+                <svg class="w-6 h-6 text-mercicrux animate-pulse-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <h3 class="text-lg font-medium text-mercicrux 
+                           bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-400">
+                    Mercicrux
+                </h3>
+                <p class="text-gray-300 mt-1">Logo Design and Creation</p>
+            </div>
+            <div class="absolute inset-0 credit-sparkles pointer-events-none opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300"></div>
+        </div>
     </div>
+</section>
 
-    <!-- Minecraft Commands Section -->
-    <div class="mineflayer-section">
-      <h2>Minecraft Commands</h2>
-      <ul>
-        <li>+discord - Syndicate Discord invite link</li>
-        <li>+help - Links back to this</li>
-        <li>+meowcount <span class="optional">[player]</span> - Shows the global meow count, or if a player is
-          specified, shows their meow count</li>
-        <li>+meowlb - Displays the top 5 players with the most meows on the server</li>
-        <li>+totalmeows - Shows the global meow count</li>
-      </ul>
-    </div>
-
-    <!-- FAQ Section -->
-    <div class="faq-section">
-      <h2>FAQ</h2>
-      <ul>
-        <li><strong>Counters:</strong>
-          <ul>
-            <li>meow counter: 26/10/2024</li>
-          </ul>
-        </li>
-        <li><strong>Is YesCom open-source?</strong> No</li>
-        <li><strong>What's the Discord?</strong> <a href="https://discord.gg/BM9HQYhR2C" target="_blank">Join the Syndicate Discord here</a></li>
-        <li><strong>What's in the Discord?</strong> Chat bridge, TPS graphs, and more</li>
-      </ul>
-    </div>
-
-  </div>
+	<script src="ServiceManager.js"></script>
+	<script src="script.js"></script>
 </body>
-
 </html>
+
+<!--
+______             _                          _   _              _                              __ _____ 
+|  _  \           (_)                        | | | |            | |                            / /|____ |
+| | | |  ___  ___  _   __ _  _ __    ___   __| | | |__   _   _  | |     _   _  _ __    __ _   / /     / /
+| | | | / _ \/ __|| | / _` || '_ \  / _ \ / _` | | '_ \ | | | | | |    | | | || '_ \  / _` | < <      \ \
+| |/ / |  __/\__ \| || (_| || | | ||  __/| (_| | | |_) || |_| | | |____| |_| || | | || (_| |  \ \ .___/ /
+|___/   \___||___/|_| \__, ||_| |_| \___| \__,_| |_.__/  \__, | \_____/ \__,_||_| |_| \__,_|   \_\\____/ 
+                       __/ |                              __/ |                                          
+                      |___/                              |___/                                           
+-->
